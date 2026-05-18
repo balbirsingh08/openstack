@@ -3,20 +3,38 @@ from typing import Optional, Dict, List
 from datetime import datetime
 from app.models.vm import VMStatus
 
-# ── Request Schemas ──────────────────────────────────────────
+
 class VMCreateRequest(BaseModel):
-    name: str = Field(..., min_length=1, max_length=100, example="my-web-server")
-    flavor: str = Field(..., example="m1.small")   # e.g. m1.small, m1.medium
-    image: str = Field(..., example="ubuntu-22.04")
-    network: Optional[str] = Field(default="default", example="default")
-    key_pair: Optional[str] = Field(default=None, example="my-keypair")
-    security_groups: Optional[List[str]] = Field(default=["default"])
-    metadata: Optional[Dict[str, str]] = Field(default={})
+    name: str = Field(..., min_length=1, max_length=100)
+    flavor: str
+    image: str
+    network: Optional[str] = "default"
+    key_pair: Optional[str] = None
+    security_groups: Optional[List[str]] = ["default"]
+    metadata: Optional[Dict[str, str]] = {}
+
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "name": "my-web-server",
+                "flavor": "m1.small",
+                "image": "ubuntu-22.04",
+                "network": "default",
+                "security_groups": ["default"],
+                "metadata": {"env": "dev"}
+            }
+        }
+    }
+
 
 class VMActionRequest(BaseModel):
-    action: str = Field(..., example="start")  # start, stop, reboot, pause
+    action: str
 
-# ── Response Schemas ─────────────────────────────────────────
+    model_config = {
+        "json_schema_extra": {"example": {"action": "stop"}}
+    }
+
+
 class VMResponse(BaseModel):
     id: str
     name: str
@@ -27,12 +45,13 @@ class VMResponse(BaseModel):
     created_at: datetime
     metadata: Dict = {}
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True} 
+
 
 class VMListResponse(BaseModel):
     total: int
     vms: List[VMResponse]
+
 
 class MessageResponse(BaseModel):
     message: str
