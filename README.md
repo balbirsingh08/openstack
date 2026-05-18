@@ -50,3 +50,12 @@ pytest tests/ -v --cov=app
 - [ ] Prometheus metrics endpoint
 - [ ] Multi-tenant support
 - [ ] WebSocket for real-time VM status
+
+list vm
+<img width="1269" height="653" alt="image" src="https://github.com/user-attachments/assets/33815250-3194-4f62-9046-85844dff3359" />
+
+created vm
+<img width="1018" height="584" alt="image" src="https://github.com/user-attachments/assets/8b808d72-c5c5-40fb-b121-161dde0595e7" />
+
+deleted vm
+<img width="1157" height="595" alt="image" src="https://github.com/user-attachments/assets/996f3de7-ec6b-4b2a-a5b4-8c273aa238b3" />
