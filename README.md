@@ -43,14 +43,6 @@ pytest tests/ -v --cov=app
 - **Pydantic schemas** give strict validation + auto docs
 - **Enum-based VM states** enforce valid state transitions
 
-## Roadmap
-- [ ] JWT Authentication
-- [ ] Redis caching for VM state
-- [ ] Async operations with Celery
-- [ ] Prometheus metrics endpoint
-- [ ] Multi-tenant support
-- [ ] WebSocket for real-time VM status
-
 list vm
 <img width="1269" height="653" alt="image" src="https://github.com/user-attachments/assets/33815250-3194-4f62-9046-85844dff3359" />
 
